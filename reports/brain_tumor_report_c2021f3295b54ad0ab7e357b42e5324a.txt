@@ -1,0 +1,19 @@
+Brain Tumor Detection Report
+Generated: 2026-04-24 16:41:17
+
+Predicted class: Glioma
+Confidence: 90.57%
+Inference mode: Simulation fallback
+Model status: model/best.pt was not found or Ultralytics is unavailable
+
+Detections:
+1. Glioma | confidence=90.57% | bbox=[174, 177, 355, 289]
+
+Preprocessing:
+- Resize: 512x512
+- Denoising: Gaussian blur 5x5
+- Normalization: OpenCV min-max normalization to 0-255
+
+Important:
+This system is a research prototype for academic use and must not be used as a
+standalone medical diagnosis. A qualified radiologist must review all findings.

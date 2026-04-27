@@ -1,0 +1,19 @@
+Brain Tumor Detection Report
+Generated: 2026-04-24 17:53:46
+
+Predicted class: No Tumor
+Confidence: 0.0%
+Inference mode: Simulation fallback
+Model status: model/best.pt was not found or Ultralytics is unavailable
+
+Detections:
+No tumor bounding box was detected above the threshold.
+
+Preprocessing:
+- Resize: 512x512
+- Denoising: Gaussian blur 5x5
+- Normalization: OpenCV min-max normalization to 0-255
+
+Important:
+This system is a research prototype for academic use and must not be used as a
+standalone medical diagnosis. A qualified radiologist must review all findings.

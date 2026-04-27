@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeuroScan AI | Brain Tumor Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">N</span>
+          <div>
+            <strong>NeuroScan AI</strong>
+            <small data-i18n="subtitle">MRI tumor detection</small>
+          </div>
+        </div>
+
+        <nav class="metrics">
+          <div class="metric">
+            <span data-i18n="classes">Classes</span>
+            <strong>4</strong>
+          </div>
+          <div class="metric">
+            <span data-i18n="imageSize">Image size</span>
+            <strong>512</strong>
+          </div>
+          <div class="metric">
+            <span data-i18n="validation">Validation accuracy</span>
+            <strong id="accuracyValue">94.2%</strong>
+          </div>
+        </nav>
+
+        <div class="controls">
+          <label class="field">
+            <span data-i18n="language">Language</span>
+            <select id="languageSelect" aria-label="Language">
+              <option value="en">English</option>
+              <option value="hi">हिंदी</option>
+              <option value="es">Español</option>
+            </select>
+          </label>
+
+          <label class="toggle-row">
+            <span data-i18n="darkMode">Dark mode</span>
+            <input id="themeToggle" type="checkbox" />
+          </label>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <h1 data-i18n="title">Brain Tumor Detection</h1>
+            <p data-i18n="description">
+              Upload an MRI image to localize and classify glioma, meningioma, pituitary tumor,
+              or no tumor.
+            </p>
+          </div>
+          <span class="status-pill" id="modelStatus">Ready</span>
+        </header>
+
+        <section class="grid">
+          <form class="panel upload-panel" id="uploadForm">
+            <div class="panel-heading">
+              <h2 data-i18n="uploadMri">MRI Input</h2>
+              <span>PNG/JPG/BMP/WEBP</span>
+            </div>
+
+            <label class="dropzone" id="dropzone">
+              <input id="imageInput" name="image" type="file" accept="image/*" />
+              <span class="upload-icon">+</span>
+              <strong data-i18n="dropTitle">Drop MRI image here</strong>
+              <small data-i18n="dropHint">or click to browse</small>
+            </label>
+
+            <div class="preview-wrap" id="previewWrap" hidden>
+              <img id="previewImage" alt="Selected MRI preview" />
+            </div>
+
+            <label class="threshold">
+              <span>
+                <span data-i18n="threshold">Confidence threshold</span>
+                <strong id="thresholdValue">40%</strong>
+              </span>
+              <input id="thresholdInput" name="threshold" type="range" min="5" max="95" value="40" />
+            </label>
+
+            <button class="primary-btn" id="submitBtn" type="submit">
+              <span data-i18n="analyze">Analyze MRI</span>
+            </button>
+          </form>
+
+          <section class="panel result-panel">
+            <div class="panel-heading">
+              <h2 data-i18n="result">Detection Result</h2>
+              <span id="inferenceMode">Waiting</span>
+            </div>
+
+            <div class="result-empty" id="emptyState">
+              <strong data-i18n="emptyTitle">No scan analyzed yet</strong>
+              <p data-i18n="emptyText">Results and annotated image will appear here.</p>
+            </div>
+
+            <div class="result-content" id="resultContent" hidden>
+              <img id="resultImage" alt="Annotated MRI result" />
+
+              <div class="diagnosis">
+                <span data-i18n="tumorType">Tumor type</span>
+                <strong id="tumorType">-</strong>
+              </div>
+
+              <div class="confidence">
+                <div>
+                  <span data-i18n="confidence">Confidence</span>
+                  <strong id="confidenceScore">0%</strong>
+                </div>
+                <progress id="confidenceBar" value="0" max="100"></progress>
+              </div>
+
+              <div class="actions">
+                <a class="secondary-btn" id="downloadImage" href="#" download data-i18n="downloadImage">
+                  Download image
+                </a>
+                <a class="secondary-btn" id="downloadReport" href="#" download data-i18n="downloadReport">
+                  Download report
+                </a>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel details-panel">
+          <div class="panel-heading">
+            <h2 data-i18n="pipeline">Processing Pipeline</h2>
+            <span id="clinicalNote">Research prototype</span>
+          </div>
+          <div class="pipeline">
+            <div>
+              <span>01</span>
+              <strong data-i18n="resize">Resize</strong>
+              <p id="resizeStep">512x512</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong data-i18n="denoise">Denoise</strong>
+              <p id="denoiseStep">Gaussian blur 5x5</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong data-i18n="normalize">Normalize</strong>
+              <p id="normalizeStep">0-255</p>
+            </div>
+            <div>
+              <span>04</span>
+              <strong data-i18n="detect">Detect</strong>
+              <p>YOLOv8 + NMS</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+Brain Tumor Detection Report
+Generated: 2026-04-24 17:53:23
+
+Predicted class: Pituitary
+Confidence: 87.61%
+Inference mode: Simulation fallback
+Model status: model/best.pt was not found or Ultralytics is unavailable
+
+Detections:
+1. Pituitary | confidence=87.61% | bbox=[194, 209, 326, 403]
+
+Preprocessing:
+- Resize: 512x512
+- Denoising: Gaussian blur 5x5
+- Normalization: OpenCV min-max normalization to 0-255
+
+Important:
+This system is a research prototype for academic use and must not be used as a
+standalone medical diagnosis. A qualified radiologist must review all findings.

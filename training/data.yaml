@@ -1,0 +1,10 @@
+path: ./datasets/brain_tumor_yolo
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: Glioma
+  1: Meningioma
+  2: Pituitary
+  3: No Tumor
